@@ -1,6 +1,6 @@
 package org.example.notification;
 
-public class PopNotification implements SendNotification {
+public class PopNotificationService implements NotificationService {
 
     @Override
     public void SendNotification(){

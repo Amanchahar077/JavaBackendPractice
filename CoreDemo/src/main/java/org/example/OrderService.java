@@ -1,19 +1,17 @@
 package org.example;
 
-import org.example.notification.EmailNotification;
-import org.example.notification.PopNotification;
-import org.example.notification.SendNotification;
-import org.example.notification.SmsNotification;
+import org.example.notification.NotificationService;
 
 public class OrderService {
 
-    SendNotification smsNotification = new SmsNotification();
-    SendNotification popNotification = new PopNotification();
-    SendNotification emailNotification = new EmailNotification();
+    NotificationService notification;
 
+    public OrderService(NotificationService notification){
+        this.notification = notification;
+    }
 
     public void PlaceOrder(){
         System.out.println("Order Placed!!");
-        popNotification.SendNotification();
+        notification.SendNotification();
     }
 }

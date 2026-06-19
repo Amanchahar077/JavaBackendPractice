@@ -1,6 +1,6 @@
 package org.example.notification;
 
-public class SmsNotification implements SendNotification {
+public class SmsNotificationService implements NotificationService {
 
     @Override
     public void SendNotification(){

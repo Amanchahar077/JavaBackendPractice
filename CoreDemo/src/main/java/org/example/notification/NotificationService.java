@@ -1,5 +1,5 @@
 package org.example.notification;
 
-public interface SendNotification {
+public interface NotificationService {
     public void SendNotification();
 }

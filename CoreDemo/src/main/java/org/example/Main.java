@@ -1,8 +1,12 @@
 package org.example;
 
+import org.example.notification.NotificationService;
+import org.example.notification.SmsNotificationService;
+
 public class Main {
     public static void main(String[] args) {
-        OrderService order = new OrderService();
+        NotificationService notification = new SmsNotificationService();
+        OrderService order = new OrderService(notification);
         order.PlaceOrder();
     }
 }
