@@ -1,9 +1,11 @@
 package in.coderArmy;
 
+import in.coderArmy.Payments.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class OrderService {
 
 //    @Autowired //not recommended
@@ -19,7 +21,7 @@ public class OrderService {
 //        this.paymentService = paymentService;
 //    }
 
-    public void order(){
+    public void placeOrder(){
         paymentService.pay();
         System.out.println("Order Placed");
     }
