@@ -2,6 +2,7 @@ package com.example.CrudSpringBootDemo.Controller;
 
 import com.example.CrudSpringBootDemo.Entity.Student;
 import com.example.CrudSpringBootDemo.Service.StudentService;
+import org.hibernate.annotations.SoftDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,12 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+
+
     //create student --> POST --> api/students/create
     @PostMapping("/create")
     public ResponseEntity<Student> createStudent(@RequestBody Student student){
-
         Student createdStudent = studentService.createStudent(student);
-
         return ResponseEntity
                 //.status(201)
                 .status(HttpStatus.CREATED)//alternate
@@ -35,8 +36,8 @@ public class StudentController {
 
 
     //read student --> GET --> api/students/{id}
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Long id){
+    @GetMapping("/get")
+    public ResponseEntity<Student> getStudent(@RequestParam Long id){//Can use @Pathvariable also
         Student studentResp = studentService.getStudent(id);
 
         if(studentResp==null){
@@ -71,14 +72,24 @@ public class StudentController {
 
     //delete student --> DELETE --> api/students/{id}
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable Long id){
+    public ResponseEntity<String> deleteStudent(@RequestParam Long id){//Can use @Pathvariable also
         Boolean isDeleted = studentService.deleteStudent(id);
         if(!isDeleted){
             return ResponseEntity.notFound().build();
         }
         //return ResponseEntity.status(HttpStatus.OK).body(deletedStudent);
         //alternate
-        return ResponseEntity.ok("Record Deleted");
+        return ResponseEntity.ok("Record Deleted !!");
+    }
+
+    //softDelete student --> PATCH --> api/students/softdelete/{id}
+    @PatchMapping("/softdelete/{id}")
+    public ResponseEntity<String> softDelete(@PathVariable Long id){
+        Boolean isDeleted = studentService.softDelete(id);
+        if(!isDeleted.booleanValue()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Record Soft Deleted!!");
     }
 
 }

@@ -1,12 +1,15 @@
 package com.example.CrudSpringBootDemo.Entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -14,6 +17,7 @@ public class Student {
     private String email;
     private int rollno;
     private String subject;
+    private Boolean isDeleted;
 
 
     public Long getId() {
@@ -62,5 +66,13 @@ public class Student {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 }
