@@ -1,8 +1,7 @@
-package com.example.CrudSpringBootDemo.Repository;
+package com.example.CrudSpringBootDemo.repository;
 
-import com.example.CrudSpringBootDemo.Entity.Student;
+import com.example.CrudSpringBootDemo.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,8 +10,10 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
 
-    Optional<Student> findByIdAndDeletedIsFalse(Long id);
+    Optional<Student> findByIdAndIsDeletedIsFalse(Long id);
 
     List<Student> findByDeletedIsFalse();
+
+    Boolean existsByEmail(String emailId);
 
 }
