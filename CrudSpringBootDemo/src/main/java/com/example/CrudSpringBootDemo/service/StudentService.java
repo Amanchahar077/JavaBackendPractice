@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -64,8 +63,9 @@ public class StudentService {
     public List<CreateStudentResponseDTO> getAllStudent(){
         List<Student> studentRespe = studentRepository.findByDeletedIsFalse();
         List<CreateStudentResponseDTO> resp = new ArrayList<>();
-        for(CreateStudentResponseDTO a: resp){
-            resp.add(a);
+        for(Student a: studentRespe){
+            CreateStudentResponseDTO stu = mapStudentToDto(a);
+            resp.add(stu);
         }
         return resp;
     }

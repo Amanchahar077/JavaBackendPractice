@@ -28,10 +28,7 @@ public class GlobalExceptionHandller {
                 HttpStatus.NOT_FOUND.getReasonPhrase(),
                 e.getMessage(),
                 request.getRequestURI()
-
-
         );
-
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(exceptionResponse);
@@ -39,7 +36,7 @@ public class GlobalExceptionHandller {
 
     @ExceptionHandler(DuplicateResourceException.class)
     public ResponseEntity<ExceptionResponseDTO> handleDuplicateResourceException(
-            DuplicateResourceException e,HttpServletRequest request){
+            DuplicateResourceException e, HttpServletRequest request){
 
         ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO(
                 LocalDateTime.now(),
@@ -73,7 +70,6 @@ public class GlobalExceptionHandller {
                 fieldErrors
 
         );
-
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(exceptionRequest);
@@ -90,7 +86,6 @@ public class GlobalExceptionHandller {
                 e.getMessage(),
                 request.getRequestURI()
         );
-
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(exceptionRequest);
@@ -107,12 +102,10 @@ public class GlobalExceptionHandller {
                 e.getMessage(),
                 request.getRequestURI()
         );
-
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(exceptionRequest);
     }
-
 
 
 }
